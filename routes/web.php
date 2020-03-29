@@ -19,4 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/category', 'CategoryController@index');
+Route::get('category/{category}', 'CategoryController@show'); 
+Route::get('/new-category', 'CategoryController@create');
+Route::post('store-category','CategoryController@store');
+Route::get('category/{category}/edit', 'CategoryController@edit');
+Route::post('category/{category}/update-category', 'CategoryController@update');
+Route::get('category/{category}/destroy', 'CategoryController@delete');
