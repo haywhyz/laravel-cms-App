@@ -73,10 +73,39 @@
                 </div>
             </div>
         </nav>
+        @Auth
+        <div class="row">
+            <div class="col-4">
+               <ul class="list-group mt-4 ml-3">
+                   <li class="list-group-item ">
+                       <a href="/">Posts</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="/">Categories</a>
+                     </li>
+               </ul>
+            </div>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+            <div class="col-8">
+                <div class="py-4">
+                    @yield('content')
+                </div>
+            </div>
+        @else
+
+            
+        <div class="col-8 offset-md-2">
+            <main class="py-4">
+                @yield('content')
+            </main>
+        </div>
+
+   
+            
+        @endauth
+       
+           
+        </div>
     </div>
 </body>
 </html>

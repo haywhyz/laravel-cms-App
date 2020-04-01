@@ -1,10 +1,14 @@
 @extends('layouts.app');
-$@section('content')
-<h2 class="text-center">Create new Todo </h2>
-<div class="container-fluid">
+@section('content')
+<div class="card card-default ">
+       
+    <div class="card-header">Categories</div>
+    
+    <div class="card-body">
+
            
 
-    <form action="/store-category" method="POST">
+    <form action="" method="POST">
         @csrf
         <div class="form-group">
             <label>Name </label>
@@ -16,7 +20,7 @@ $@section('content')
         </div>
     </form>
 
-</div>
+
 
 @endsection
 
