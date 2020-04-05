@@ -9,7 +9,7 @@
         <div class="card-body">
             {{$categories->name}}
         </div>
-        <a href="/category/{{$categories->id}}/edit" class="btn btn-primary">edit</a>
+        <a href="{{route('category.edit')}}" class="btn btn-primary">edit</a>
         <a href="/category/{{$categories->id}}/delete" class="btn btn-danger">delete</a>
 
     </div>

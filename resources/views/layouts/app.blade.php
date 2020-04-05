@@ -16,6 +16,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 
     <!-- Styles -->
@@ -73,35 +75,40 @@
                 </div>
             </div>
         </nav>
+            <div class="container-fluid">
+                @if(session()->has('success'))
+                    <div class="alert alert-success">
+                    {{ Session()->get('success') }}
+                    </div>
+                @endif
         @Auth
-        <div class="row">
-            <div class="col-4">
-               <ul class="list-group mt-4 ml-3">
-                   <li class="list-group-item ">
-                       <a href="/">Posts</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="/">Categories</a>
-                     </li>
-               </ul>
-            </div>
+                <div class="row">
+                    <div class="col-4">
+                         <ul class="list-group mt-4 ml-3">
+                            <li class="list-group-item ">
+                                <a href="/">Posts</a>
+                            </li>
+                             <li class="list-group-item">
+                                    <a href="{{route('category.index')}}">Categories</a>
+                            </li>
+                        </ul>
+                    </div>
 
-            <div class="col-8">
-                <div class="py-4">
+                    <div class="col-8">
+                        <div class="py-4">
+                            @yield('content')
+                        </div>
+                    </div>
+             @else
+
+            
+            <div class="col-8 offset-md-2">
+                <main class="py-4">
                     @yield('content')
-                </div>
+                </main>
             </div>
-        @else
-
             
-        <div class="col-8 offset-md-2">
-            <main class="py-4">
-                @yield('content')
-            </main>
         </div>
-
-   
-            
         @endauth
        
            
