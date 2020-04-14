@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Category;
+use App\Post;
 use App\Http\Requests\Categories\CreateCategoryRequest;
 use App\Http\Requests\Categories\UpdateCategoryRequest;
 
@@ -17,7 +18,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return view('category.index')->with('categories', Category::all());
+        return view('category.index')->with('categories', Category::all())->with('category', '');
     }
 
     /**
@@ -80,7 +81,7 @@ class CategoriesController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-       
+        $data = request()->all();
         $category->name = $data['name'];
         $category->save();
         session()->flash('success', 'category updated successfully');
@@ -96,7 +97,7 @@ class CategoriesController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect(route('category.index'));
+        return redirect('/category');
 
     }
 }

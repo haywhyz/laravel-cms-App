@@ -14,10 +14,10 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css">
 
 
     <!-- Styles -->
@@ -86,12 +86,20 @@
                     <div class="col-4">
                          <ul class="list-group mt-4 ml-3">
                             <li class="list-group-item ">
-                                <a href="/">Posts</a>
+                                <a href="{{route('post.index')}}">Posts</a>
                             </li>
                              <li class="list-group-item">
                                     <a href="{{route('category.index')}}">Categories</a>
                             </li>
                         </ul>
+
+                        <ul class="list-group mt-4 ml-3 mt-3">
+                            <li class="list-group-item ">
+                                <a href="{{route('trashed-post.index')}}">Trashed Post</a>
+                            </li>
+                             
+                        </ul>
+
                     </div>
 
                     <div class="col-8">
@@ -114,5 +122,10 @@
            
         </div>
     </div>
+    
+    @yield('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.js"> </script>    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"> </script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

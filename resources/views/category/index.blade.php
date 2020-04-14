@@ -12,6 +12,7 @@
     <div class="card-header">Categories</div>
         
         <div class="card-body">
+            @if ($categories->count()>=1)
             <table class="table table-stripped">
                 
                 <th>Name</th>
@@ -27,9 +28,13 @@
                 
                 @endforeach
             </table>
+            @else
+            <h2 class="text-center"> No  Categories Found! </h2>
+            @endif
 
-            <form action="{{route('category.destroy',$category)}}" method="POST">
-                @csrf
+                    
+                <form action="{{route('category.destroy', $category )}}" method="POST">
+                @csrf 
                 @method('delete')
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
