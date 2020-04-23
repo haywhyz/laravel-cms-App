@@ -16,11 +16,13 @@
             <table class="table table-stripped">
                 
                 <th>Name</th>
+                <th>Post count</th>
                 <th>Operations</th>
                 
                 @foreach ($categories as $category)
                 <tr>
                     <td>{{ $category->name}} </td>
+                    <td>{{$category->post->count() }}</td>
                    <td> <a href="{{route('category.edit', $category->id)}}" class="btn btn-info">Edit</a> 
                     <a href="{{route('category.destroy', $category->id)}}" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" >Delete</a>
                 </td>

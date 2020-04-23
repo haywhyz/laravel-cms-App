@@ -19,13 +19,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('category', 'CategoriesController');
-Route::resource('post', 'PostController');
-Route::get('trashed-post', 'PostController@trashed')->name('trashed-post.index');
+
 // Route::get('category/{category}', 'CategoryController@show'); 
 // Route::get('/create', 'CategoryController@create');
 // Route::post('store-category','CategoryController@store');
 // Route::get('category/{category}/edit', 'CategoryController@edit');
 // Route::post('category/{category}/update-category', 'CategoryController@update');
 // Route::get('category/{category}/destroy', 'CategoryController@delete');
+Route::middleware(['auth'])->group(function (){
+    Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('category', 'CategoriesController');
+Route::resource('post', 'PostController');
+Route::get('trashed-post', 'PostController@trashed')->name('trashed-post.index');
+
+});

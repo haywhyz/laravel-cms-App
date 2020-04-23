@@ -8,9 +8,17 @@ use App\Http\Requests\Posts\CreatePostRequest;
 use App\Http\Requests\Posts\UpdatePostRequest;
 use App\Post;
 use App\Category;
+use App\Http\Middleware\VerifyCatgoryCount;
+
+
+
+
 
 class PostController extends Controller
 {
+    public function __construct(){
+        $this->middleware('VerifyCategoryCount')->only(['create', 'store']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +38,7 @@ class PostController extends Controller
     public function create()
     {
     
-        return view('post.create')->with('posts', '');
+        return view('post.create')->with('categories', Category::all())->with('post','');
     }
 
     /**
@@ -51,6 +59,7 @@ class PostController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'content'=> $request->content,
+            'category_id'=>$request->category,
             'publish_at'=> $request->publish_at,
             'image'=>$image
 
@@ -90,7 +99,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('post.create')->with('posts',$post);
+        return view('post.create')->with('posts',$post)->with('categories', Category::all());
     }
 
     /**
@@ -111,6 +120,7 @@ class PostController extends Controller
             $post->title = $data['title'];
             $post->description =$data['description'];
             $post->content = $data['content'];
+            $post->category_id= $data['category'];
             $post->publish_at = $data['publish_at'];
             $post->update();
 

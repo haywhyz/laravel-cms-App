@@ -16,12 +16,14 @@
                    
                     <th>Image</th>
                     <th>Title</th>
+                    <th>Categories</th>
                     <th></th>
                 
                     @foreach ($posts as $post)
                     <tr>
                         <td><img src="{{ asset('/storage/'.$post->image) }}" alt="" width="200px" height="150px" ></td>
                         <td>{{ $post->title }}</td>
+                        <td>{{ $post->category->name }}</td>
                         <td> @if(!$post->trashed())
                         </td>
                         <td> <a href="{{route('post.edit', $post->id) }}" class="btn btn-info">edit</a><td>

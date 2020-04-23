@@ -8,6 +8,7 @@ use App\Http\Requests\Categories\UpdateCategoryRequest;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoriesController extends Controller
 {
@@ -18,6 +19,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
+        //  $categories= DB::table('categories')->get();
+        // return view('category.index')->with($categories);
         return view('category.index')->with('categories', Category::all())->with('category', '');
     }
 
@@ -56,7 +59,8 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        return view('category.edit')->with('categories', Category::all($id));
+       return $category = DB::table('categories')->where('id',$id);
+        // return view('category.edit')->with('categories', Category::all($id));
     }
 
     /**
@@ -68,6 +72,7 @@ class CategoriesController extends Controller
     public function edit(Category $category)
     {
         // return view('category.edit')->with('categories', Category::all($id));
+
         return view('category.create')->with('category', $category);
 
     }
