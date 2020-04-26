@@ -28,8 +28,10 @@ Auth::routes();
 // Route::get('category/{category}/destroy', 'CategoryController@delete');
 Route::middleware(['auth'])->group(function (){
     Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('category', 'CategoriesController');
-Route::resource('post', 'PostController');
-Route::get('trashed-post', 'PostController@trashed')->name('trashed-post.index');
-
+    Route::resource('category', 'CategoriesController');
+    Route::resource('post', 'PostController');
+    Route::get('trashed-post', 'PostController@trashed')->name('trashed-post.index');
+    Route::resource('tag', 'TagsController');
+    
+    
 });

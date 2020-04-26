@@ -94,6 +94,9 @@
                         <a href="{{route('post.index')}}">Posts</a>
                     </li>
                     <li class="list-group-item">
+                        <a href="{{route('tag.index')}}">Tags</a>
+                    </li>
+                    <li class="list-group-item">
                         <a href="{{route('category.index')}}">Categories</a>
                     </li>
                 </ul>
