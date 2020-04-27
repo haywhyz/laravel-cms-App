@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Tag;
+use Illuminate\Support\Facades\DB;
+
 
 
 
@@ -18,7 +20,7 @@ class TagsController extends Controller
      */
     public function index()
     {
-        return view('tag.index')->with('tags', Tag::all());
+        return view('tag.index')->with('tags', Tag::all())->with('tag', '');
     }
 
     /**
@@ -64,9 +66,9 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tag $tag)
     {
-        //
+        return view('tag.create')->with('tags',$tag);
     }
 
     /**
@@ -76,9 +78,24 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTagRequest $request, Tag $tag)
     {
-        //
+        $data = request()->all();
+       
+        
+        //  DB::table('tags')
+        //       ->where('id', $tag)
+        //       ->update(['name' => ' developmeAndroidnt']);
+
+        //    DB::table('tags') ->where('id', $tag) ->limit(1) 
+        //       ->update( [ 'name' => ['developmeAndroidnt'] ]); 
+            
+             $tag->name = $data['name'];
+             $tag->update();
+
+              session()->flash('success', 'Tag has been updated');
+             return redirect()->back();
+              
     }
 
     /**
@@ -87,8 +104,10 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        session()->flash('success', 'Tag has been updated');
+        return redirect('/tag');
     }
 }

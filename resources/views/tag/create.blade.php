@@ -4,7 +4,7 @@
        
     <div class="card-header">
         
-        {{ isset($tag)? 'Edit Tag' : 'Create Tag' }}
+        {{ isset($tags)? 'Edit Tag' : 'Create Tag' }}
         {{-- @php
          if(isset('$categories')) {
              echo "Edit";
@@ -34,7 +34,7 @@
     @endif
 
     <div class="card-body">
-    <form action=" {{ isset($tags)? route('tag.update', $tags): route('tag.store') }}" method="POST">
+    <form action=" {{ isset($tags)? route('tag.update', $tags->id): route('tag.store') }}" method="POST">
         @csrf
         @if (isset($tags))
            @method('PUT') 

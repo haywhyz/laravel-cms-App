@@ -35,7 +35,7 @@
             @endif
             
             
-        <form action="" method="POST">
+        <form action="{{route('tag.destroy', $tag)}}" method="POST">
                 @csrf 
                 @method('delete')
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
