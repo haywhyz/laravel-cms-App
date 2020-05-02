@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','WelcomeController@index');
+Route::get('/blog/post/{id}', 'blog\PostController@show')->name('blog.show');
 
 Auth::routes();
 
@@ -34,4 +33,10 @@ Route::middleware(['auth'])->group(function (){
     Route::resource('tag', 'TagsController');
     
     
+});
+ROute::middleware(['auth', 'admin'])->group(function()
+{
+    Route::get('users.profile', 'UsersController@profile');
+    Route::get('users', 'UsersController@index');
+    Route::post('users/{user}/update', 'UsersController@update');
 });

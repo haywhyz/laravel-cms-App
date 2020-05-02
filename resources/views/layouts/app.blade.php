@@ -10,14 +10,18 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     
     <!-- Scripts -->
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+
     
     
     <!-- Styles -->
@@ -58,12 +62,17 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             
+                            
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                {{-- <a class="dropdown-item" href="users/profile" 
+                                onclick="event.preventDefault();">
+                                    Profile
+                                 </a> --}}
                                 <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                 </a>
                             
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
@@ -90,6 +99,11 @@
         <div class="row">
             <div class="col-4">
                 <ul class="list-group mt-4 ml-3">
+                    @if(auth()->user()->isAdmin())
+                    <li class="list-group-item ">
+                        <a href="/users">Users</a>
+                    </li>
+                    @endif
                     <li class="list-group-item ">
                         <a href="{{route('post.index')}}">Posts</a>
                     </li>
@@ -129,12 +143,17 @@
         
         
     </div>
+     
+@section('script')
+<script src="">
+    $(document).ready(function() {
+    $('.basic-multiple').select2();
+});
+</script>
+
 </div>
 
 @yield('script')
-<script src="{{ asset('js/app.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.js"> </script>    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"> </script>
-<script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 </html>

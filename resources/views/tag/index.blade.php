@@ -17,12 +17,12 @@
                 
                 <th>Name</th>
                 
-                <th>Operations</th>
+                <th>Count</th>
 
                 @foreach ($tags as $tag)
                 <tr>
                     <td>{{ $tag->name}} </td>
-                    {{-- <td>{{$tag->post->count() }}</td> --}}
+                    <td>{{$tag->posts->count() }}</td>
                     <td> <a href="{{route('tag.edit', $tag->id)}}" class="btn btn-info">Edit</a> 
                         <a href="{{route('tag.destroy', $tag->id)}}" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" >Delete</a>
                     </td>

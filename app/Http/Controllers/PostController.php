@@ -8,6 +8,7 @@ use App\Http\Requests\Posts\CreatePostRequest;
 use App\Http\Requests\Posts\UpdatePostRequest;
 use App\Post;
 use App\Category;
+use App\Tag;
 use App\Http\Middleware\VerifyCatgoryCount;
 
 
@@ -38,7 +39,8 @@ class PostController extends Controller
     public function create()
     {
     
-        return view('post.create')->with('categories', Category::all())->with('post','');
+        return view('post.create')->with('categories', Category::all())->with('post','')
+        ->with('tags', Tag::all());
     }
 
     /**
@@ -49,13 +51,15 @@ class PostController extends Controller
      */
     public function store(CreatePostRequest $request)
     {
+
+   
        
     
          //upload image
          $image = $request->image->store('posts');
        
       // store data 
-        Post::create([
+      $post =  Post::create([
             'title' => $request->title,
             'description' => $request->description,
             'content'=> $request->content,
@@ -64,7 +68,16 @@ class PostController extends Controller
             'image'=>$image
 
         ]);
-               
+        // $tag = Tag::find(['tag[]']);
+        // $post->tags()->attach($post);
+        if($request->tags)
+        {
+            $post->tags()->attach($request->tags);
+        }
+        // $user->roles()->attach($roleIds);
+        // if($request->tags){
+        //     $post->tags()->sync($request->$tags);
+        // }
        
         //    // store data
         // $post->title =$data['title'];
@@ -99,7 +112,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('post.create')->with('posts',$post)->with('categories', Category::all());
+        return view('post.create')->with('posts',$post)->with('categories', Category::all())
+        ->with('tags', Tag::all());
     }
 
     /**
@@ -122,7 +136,13 @@ class PostController extends Controller
             $post->content = $data['content'];
             $post->category_id= $data['category'];
             $post->publish_at = $data['publish_at'];
+
+            
+            if($request->tags){
+                $post->tags()->sync($request->$tags);
+            }
             $post->update();
+
 
             session()->flash('success', 'post successfully updated');
 

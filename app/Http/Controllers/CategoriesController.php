@@ -101,7 +101,13 @@ class CategoriesController extends Controller
      */
     public function destroy(Category $category)
     {
+        if($category->posts->count() > 0)
+        {
+            session()->flash('error', 'category is attached to a post ');
+            return redirect()->back();
+        }
         $category->delete();
+        session()->flash('success', 'category deleted successfully');
         return redirect('/category');
 
     }
