@@ -9,6 +9,7 @@ use App\Http\Requests\Posts\UpdatePostRequest;
 use App\Post;
 use App\Category;
 use App\Tag;
+use App\User;
 use App\Http\Middleware\VerifyCatgoryCount;
 
 
@@ -65,6 +66,7 @@ class PostController extends Controller
             'content'=> $request->content,
             'category_id'=>$request->category,
             'publish_at'=> $request->publish_at,
+            'user_id' => auth()->user()->id,
             'image'=>$image
 
         ]);

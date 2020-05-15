@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','WelcomeController@index');
+Route::get('/','WelcomeController@index')->name('welcome');
 Route::get('/blog/post/{id}', 'blog\PostController@show')->name('blog.show');
+Route::get('/blog/category/{id}', 'blog\PostController@category')->name('blog.category');
+Route::get('/blog/tag/{id}', 'blog\PostController@tag')->name('blog.tag');
+
 
 Auth::routes();
 

@@ -41,7 +41,7 @@
         <div class="row gap-y align-items-center">
 
           <div class="col-6 col-lg-3">
-            <a href="../index.html"><img src="{{asset('img/logo-dark.png')}}" alt="logo"></a>
+          <a href=""><img src="{{asset('img/logo-dark.png')}}" alt="logo"></a>
           </div>
 
           <div class="col-6 col-lg-3 text-right order-lg-last">

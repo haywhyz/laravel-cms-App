@@ -2,7 +2,7 @@
 
 
 @section('title')
-
+{{$category->name}}
 @endsection
 
 
@@ -17,7 +17,7 @@
         
         <div class="navbar-left">
             <button class="navbar-toggler" type="button">&#9776;</button>
-            <a class="navbar-brand" href="{{route('welcome')}}">
+        <a class="navbar-brand" href="{{route('welcome')}}">
                 <img class="logo-dark" src="{{asset('img/logo-dark.png')}}" alt="logo">
                 <img class="logo-light" src="{{asset('img/logo-light.png')}}" alt="logo">
             </a>
@@ -38,7 +38,7 @@
             </ul>
         </section>
         
-        <a class="btn btn-xs btn-round btn-success" href="{{route('login')}}">Login</a>
+       
         
     </div>
 </nav>
@@ -55,7 +55,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 
-                <h1>Latest Blog Posts</h1>
+                <h1>{{$category->name}}</h1>
                 <p class="lead-2 opacity-90 mt-6">Read and get updated on how we progress</p>
                 
             </div>
@@ -90,10 +90,10 @@
                             </div>
                         </div>
                         @empty
-                        <p class="text-center">
+                            <p class="text-center">
                             No records found for <strong> {{request()->query('search')}}</strong> 
-                        </p>
-                        
+                            </p>
+            
                         
                         @endforelse
                         
@@ -109,16 +109,13 @@
                         <a class="btn btn-white disabled"><i class="ti-arrow-left fs-9 mr-4"></i> Newer</a>
                         <a class="btn btn-white" href="#">Older <i class="ti-arrow-right fs-9 ml-4"></i></a>
                     </nav> --}}
-                    
+
                     {{$posts->appends(['search'=>request()->query('search')])->links()}}
                 </div>
                 
                 
                 
-               
-                   @include('partials.sidebar')
-                    
-                
+                @include('partials.sidebar')
             </div>
         </div>
     </main>
